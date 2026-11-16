@@ -44,7 +44,7 @@ The unauthenticated health route reports `databaseStatus`, `transactionTopology`
 
 ## Deploying to Vercel
 
-Import the repository into Vercel with the repository root as the Root Directory. Do not set it to `server`; the root contains the Vite app, `vercel.json`, and the `server/` API. The included configuration builds the Vite site and routes `/api/*` to the Express function. Keep `VITE_API_URL` unset in Vercel so browser requests use the same origin. Vercel installs the frontend and server dependencies separately.
+Import the repository into Vercel with the repository root as the Root Directory. Do not set it to `server`; the root contains the Vite app, `vercel.json`, and the `server/` API. The included configuration builds the Vite site and proxies same-origin `/api/*` requests to the Render Express service, preserving first-party session cookies. Keep `VITE_API_URL` unset in Vercel. Vercel installs the frontend and server dependencies separately.
 
 Set these server environment variables in Vercel for Preview and Production: `MONGODB_URI` (a MongoDB Atlas replica-set URI) and `SESSION_SECRET` (at least 32 random characters). Set `CLIENT_ORIGIN` to your production custom domain if you use one; Vercel preview URLs are allowed from the deployment's `VERCEL_URL`. Set `TRANSFER_QUOTE_SECRET` to a separate stable random secret if quote signatures should be independent of `SESSION_SECRET`. Add provider secrets only when an authorized provider integration is configured. Allow Vercel's deployment IP access in MongoDB Atlas, or configure Atlas network access accordingly.
 
