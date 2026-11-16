@@ -1,5 +1,5 @@
 {
-  "installCommand": "npm install && npm --prefix server install",
+  "installCommand": "npm install && npm install --prefix ./server",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
