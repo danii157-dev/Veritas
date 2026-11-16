@@ -171,7 +171,9 @@ function App() {
   useEffect(() => {
     const handlePopState = () => setPublicPage(window.location.pathname === '/login' ? 'login' : window.location.pathname === '/register' ? 'register' : window.location.pathname === '/app' ? 'app' : 'home');
     window.addEventListener('popstate', handlePopState);
-    const apiUrl = import.meta.env.VITE_API_URL || `${window.location.protocol}//${window.location.hostname}:4000`;
+    const apiUrl = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV
+      ? `${window.location.protocol}//${window.location.hostname}:4000`
+      : '');
     void fetch(`${apiUrl}/api/health`).then((response) => response.ok ? response.json() : null).then((health: {
       databaseConnected?: boolean;
       databaseStatus?: string;
